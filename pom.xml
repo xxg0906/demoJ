@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <ruoyi.version>2.5.0</ruoyi.version>
+        <project_version>0.1</project_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -38,6 +38,7 @@
 
     <modules>
         <module>common</module>
+        <module>modules</module>
     </modules>
     <dependencyManagement>
         <dependencies>
