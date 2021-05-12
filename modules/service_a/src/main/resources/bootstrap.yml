@@ -1,5 +1,17 @@
 spring:
     cloud:
         nacos:
+            server-addr: localhost:8848
             config:
                 namespace: xxgo
+                group: xxgo
+                shared-configs[0]:
+                    data-id: dev.properties
+                    group: xxgo
+                    refresh: false
+#            discovery:
+#                namespace: xxgo
+#                group: xxgo
+feign:
+    hystrix:
+        enabled: true

@@ -1,4 +1,4 @@
-package top.xxgo.service_a;
+package top.xxgo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

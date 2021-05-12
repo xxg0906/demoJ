@@ -6,6 +6,7 @@
         <artifactId>xxgo-common</artifactId>
         <groupId>top.xxgo</groupId>
         <version>0.1</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>xxgo-common-projectBase</artifactId>
     <version>0.1</version>
@@ -37,12 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <dependency>

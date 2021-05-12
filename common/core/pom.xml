@@ -6,6 +6,7 @@
         <artifactId>xxgo-common</artifactId>
         <groupId>top.xxgo</groupId>
         <version>0.1</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>xxgo-common-core</artifactId>
     <version>0.1</version>
