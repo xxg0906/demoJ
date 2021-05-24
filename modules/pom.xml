@@ -23,6 +23,7 @@
         <module>
             service-b
         </module>
+        <module>system</module>
     </modules>
 
 </project>
