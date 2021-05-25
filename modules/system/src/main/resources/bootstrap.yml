@@ -1,0 +1,10 @@
+server:
+    port: 8085
+spring:
+    application:
+        name: system
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/xxgo_sys?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&autoReconnect=true
+        username: root

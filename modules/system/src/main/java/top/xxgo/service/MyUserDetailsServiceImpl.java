@@ -15,8 +15,8 @@ import java.util.List;
  * @author zhanghui
  * @date 2019/4/24
  */
-//@Service
-public class MyUserDetailsService implements UserDetailsService {
+@Service
+public class MyUserDetailsServiceImpl implements UserDetailsService {
     /**
      * 根据用户的角色判断权限
      */
