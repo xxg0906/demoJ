@@ -15,11 +15,12 @@ import java.util.List;
  * @author zhanghui
  * @date 2019/4/24
  */
-@Service
+@Service("myUserDetailsServiceImpl")
 public class MyUserDetailsServiceImpl implements UserDetailsService {
     /**
      * 根据用户的角色判断权限
      */
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //模拟数据库
         SysUser sysUser;
