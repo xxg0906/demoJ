@@ -12,10 +12,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import top.xxgo.service.MyUserDetailsServiceImpl;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -41,6 +47,16 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private TokenStore jwtTokenStore;
+
+    @Autowired
+    private TokenEnhancer jwtTokenEnhancer;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
+
     /**
      *  客户端详情信息在这里进行初始化，
      *  把客户端详情信息写死在这里或者是通过数据库来存储调取详情信息
@@ -76,9 +92,22 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints
-                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//        endpoints
+//                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//                .authenticationManager(authenticationManager)
+//                .userDetailsService(myUserDetailsServiceImpl);
+        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+        List<TokenEnhancer> enhancerList = new ArrayList<>();
+        enhancerList.add(jwtTokenEnhancer);
+        enhancerList.add(jwtAccessTokenConverter);
+        enhancerChain.setTokenEnhancers(enhancerList);
+        endpoints.tokenStore(jwtTokenStore)
+                .userDetailsService(myUserDetailsServiceImpl)
+                /**
+                 * 支持 password 模式
+                 */
                 .authenticationManager(authenticationManager)
-                .userDetailsService(myUserDetailsServiceImpl);
+                .tokenEnhancer(enhancerChain)
+                .accessTokenConverter(jwtAccessTokenConverter);
     }
 }
