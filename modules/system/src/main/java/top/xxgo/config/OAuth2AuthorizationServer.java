@@ -109,5 +109,9 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
                 .authenticationManager(authenticationManager)
                 .tokenEnhancer(enhancerChain)
                 .accessTokenConverter(jwtAccessTokenConverter);
+
+
+
+
     }
 }
