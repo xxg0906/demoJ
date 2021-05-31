@@ -2,6 +2,7 @@ package top.xxgo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.provider.authentication.TokenExtractor;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -31,5 +32,10 @@ public class JwtTokenConfig {
     @Bean
     public TokenEnhancer jwtTokenEnhancer(){
        return new JWTokenEnhancer();
+    }
+
+    @Bean
+    public TokenExtractor tokenExtractor(){
+        return new JwtTokenExtractor();
     }
 }

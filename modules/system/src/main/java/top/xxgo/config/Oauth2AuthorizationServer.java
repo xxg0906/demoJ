@@ -1,23 +1,20 @@
 package top.xxgo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.authentication.TokenExtractor;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-import top.xxgo.service.MyUserDetailsServiceImpl;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -28,10 +25,9 @@ import java.util.List;
  * 授权服务器
  * @author xxg
  */
-@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 @Configuration
 @EnableAuthorizationServer
-public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAdapter {
+public class Oauth2AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
 
     private static final String DEMO_RESOURCE_ID = "order";
@@ -56,6 +52,8 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
 
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
+
+
 
     /**
      *  客户端详情信息在这里进行初始化，
@@ -101,6 +99,7 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
         enhancerList.add(jwtTokenEnhancer);
         enhancerList.add(jwtAccessTokenConverter);
         enhancerChain.setTokenEnhancers(enhancerList);
+
         endpoints.tokenStore(jwtTokenStore)
                 .userDetailsService(myUserDetailsServiceImpl)
                 /**
@@ -109,9 +108,6 @@ public class OAuth2AuthorizationServer  extends AuthorizationServerConfigurerAda
                 .authenticationManager(authenticationManager)
                 .tokenEnhancer(enhancerChain)
                 .accessTokenConverter(jwtAccessTokenConverter);
-
-
-
 
     }
 }
