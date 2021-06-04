@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import top.xxgo.util.UserInfoUtil;
 
 /**
  * @author xxg
@@ -18,6 +19,6 @@ public class ExampleController {
     public String hello(@RequestParam("access_token") String access_token) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(access_token);
-        return "hello  security";
+        return "hello  security "+ UserInfoUtil.getUserInfo().getCountType();
     }
 }

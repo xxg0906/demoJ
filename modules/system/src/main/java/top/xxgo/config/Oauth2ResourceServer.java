@@ -11,8 +11,8 @@ import org.springframework.security.oauth2.provider.authentication.TokenExtracto
 /**
  * @author xxg
  */
-@EnableResourceServer
-@Configuration
+//@EnableResourceServer
+//@Configuration
 public class Oauth2ResourceServer extends ResourceServerConfigurerAdapter {
 
 

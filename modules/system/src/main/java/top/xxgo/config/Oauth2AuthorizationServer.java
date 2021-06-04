@@ -25,8 +25,8 @@ import java.util.List;
  * 授权服务器
  * @author xxg
  */
-@Configuration
-@EnableAuthorizationServer
+//@Configuration
+//@EnableAuthorizationServer
 public class Oauth2AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
 

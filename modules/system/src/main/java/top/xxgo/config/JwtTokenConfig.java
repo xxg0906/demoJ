@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * @author fengzheng
  * @date 2019/10/12
  */
-@Configuration
+//@Configuration
 public class JwtTokenConfig {
 
     @Bean
