@@ -18,11 +18,10 @@
         <artifactId>xxgo-common</artifactId>
         <groupId>top.xxgo</groupId>
         <version>0.1</version>
-      <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
-    <artifactId>common_api</artifactId>
+    <artifactId>common-api</artifactId>
     <version>0.1</version>
-    <name>common_api</name>
+    <name>common-api</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
     <properties>
