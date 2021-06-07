@@ -1,5 +1,6 @@
 package top.xxgo.filter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -7,7 +8,6 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import top.xxgo.common.projectBase.utils.StringUtils;
 import top.xxgo.config.AuthIgnoreProperties;
 
 import java.util.List;
@@ -25,12 +25,12 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        //auth 白名单
-        String path = exchange.getRequest().getURI().getPath();
-        boolean ignoreMatch= StringUtils.matches(path, authIgnoreProperties.getIgnores());
-       if(ignoreMatch){
-           return chain.filter(exchange);
-       }
+//        //auth 白名单
+//        String path = exchange.getRequest().getURI().getPath();
+//        boolean ignoreMatch= StringUtils.matches(path, authIgnoreProperties.getIgnores());
+//       if(ignoreMatch){
+//           return chain.filter(exchange);
+//       }
         //获取请求token
 
         //校验token

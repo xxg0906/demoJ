@@ -6,6 +6,7 @@
         <artifactId>base</artifactId>
         <groupId>top.xxgo</groupId>
         <version>0.1</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>gateway</artifactId>
     <version>0.1</version>
@@ -15,12 +16,17 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>top.xxgo</groupId>
-            <artifactId>xxgo-common-projectBase</artifactId>
+            <artifactId>common-base</artifactId>
             <version>0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>top.xxgo</groupId>
+            <artifactId>xxgo-common-core</artifactId>
+            <version>0.1</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -31,6 +37,30 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+
+        <!--Spring Cloud & Alibaba-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- OAuth2资源服务器-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-jose</artifactId>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -38,6 +68,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

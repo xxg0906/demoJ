@@ -18,8 +18,9 @@
     </properties>
 
     <modules>
-        <module>common_api</module>
-        <module>core</module>
+        <module>common-api</module>
+        <module>common-core</module>
+        <module>common-base</module>
     </modules>
 
 </project>

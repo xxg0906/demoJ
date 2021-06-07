@@ -6,8 +6,10 @@
         <artifactId>demo</artifactId>
         <groupId>top.xxgo</groupId>
         <version>0.1</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>base</artifactId>
+    <packaging>pom</packaging>
     <version>0.1</version>
     <name>base</name>
     <description>Demo project for Spring Boot</description>

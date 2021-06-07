@@ -1,8 +1,8 @@
 package top.xxgo.common.api.service.feign.hystrix;
 
-import feign.FeignException;
-import feign.hystrix.FallbackFactory;
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import top.xxgo.common.api.service.feign.IndexAFeign;
