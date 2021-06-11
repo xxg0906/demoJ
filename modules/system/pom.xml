@@ -17,22 +17,6 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-            <version>2.2.4.RELEASE</version>
-        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
@@ -40,10 +24,11 @@
 <!--            <version>1.4.7.RELEASE</version>-->
 <!--        </dependency>-->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <groupId>top.xxgo</groupId>
+            <artifactId>common-base</artifactId>
+            <version>0.1</version>
         </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -61,16 +46,7 @@
         </dependency>
 
         <!-- mybatis plus 代码生成器 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.5.0</version>
-        </dependency>
+
 
 
         <dependency>
@@ -84,11 +60,6 @@
             <version>1.2.75</version>
         </dependency>
 
-        <!-- SpringCloud Openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
 
 
 

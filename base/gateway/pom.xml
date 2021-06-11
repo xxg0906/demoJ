@@ -33,11 +33,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
 
         <!--Spring Cloud & Alibaba-->
         <dependency>

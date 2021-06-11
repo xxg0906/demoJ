@@ -1,9 +1,9 @@
-package top.xxgo.mapper.auto;
+package top.xxgo.auto;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import top.xxgo.model.auto.User;
+import top.xxgo.pojo.LoginUser;
 
 /**
  * <p>
@@ -14,6 +14,6 @@ import top.xxgo.model.auto.User;
  * @since 2021-06-02
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<LoginUser> {
 
 }

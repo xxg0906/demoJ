@@ -1,0 +1,35 @@
+server:
+    port: 8085
+spring:
+    application:
+        name: system
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/xxgo_sys?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&autoReconnect=true
+        username: root
+    cloud:
+        nacos:
+            server-addr: localhost:8848
+            config:
+                namespace: xxgo
+                group: xxgo
+                shared-configs[0]:
+                    data-id: dev.properties
+                    group: xxgo
+                    refresh: false
+
+mybatis-plus:
+    configuration:
+        map-underscore-to-camel-case: true
+        auto-mapping-behavior: full
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapper-locations: classpath*:mapper/**/*Mapper.xml
+    global-config:
+        # 逻辑删除配置
+        db-config:
+            # 删除前
+            logic-not-delete-value: 1
+            # 删除后
+            logic-delete-value: 0
+

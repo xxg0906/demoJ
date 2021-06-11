@@ -1,12 +1,13 @@
-package top.xxgo.model.auto;
+package top.xxgo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -19,14 +20,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("sys_user")
-public class User implements Serializable {
+public class LoginUser implements Serializable {
 
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("user_name")
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -40,5 +41,9 @@ public class User implements Serializable {
 
     private String personid;
 
+    private Boolean enabled;
+    private Boolean accountNonExpired;
+    private Boolean credentialsNonExpired;
+    private Boolean accountNonLocked;
 
 }
