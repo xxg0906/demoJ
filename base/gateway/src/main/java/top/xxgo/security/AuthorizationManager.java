@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -30,13 +31,13 @@ import java.util.Set;
  * 鉴权管理器
  * @author xxg
  */
-@Component
-@AllArgsConstructor
+//@Component
+//@AllArgsConstructor
 @Slf4j
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
 
-private final RedisTemplate<String,Object> redisTemplate;
+private final StringRedisTemplate  stringRedisTemplate = null;
 
 
     @Override
@@ -59,7 +60,7 @@ private final RedisTemplate<String,Object> redisTemplate;
 //        }
 
         // 从缓存取资源权限角色关系列表
-        Map<Object, Object> permissionRoles = redisTemplate.opsForHash().entries(AuthConstant.PERMISSION_ROLES_REDIS_KEY);
+        Map<Object, Object> permissionRoles = stringRedisTemplate.opsForHash().entries(AuthConstant.PERMISSION_ROLES_REDIS_KEY);
         Iterator<Object> iterator = permissionRoles.keySet().iterator();
         // 请求路径匹配到的资源需要的角色权限集合authorities统计
         Set<String> authorities = new HashSet<>();
@@ -70,8 +71,7 @@ private final RedisTemplate<String,Object> redisTemplate;
             }
         }
 
-        Mono<AuthorizationDecision> authorizationDecisionMono = mono
-                .filter(Authentication::isAuthenticated)
+        return  mono.filter(Authentication::isAuthenticated)
                 .flatMapIterable(Authentication::getAuthorities)
                 .map(GrantedAuthority::getAuthority)
                 .any(roleId -> {
@@ -83,6 +83,5 @@ private final RedisTemplate<String,Object> redisTemplate;
                 })
                 .map(AuthorizationDecision::new)
                 .defaultIfEmpty(new AuthorizationDecision(false));
-        return null;
     }
 }

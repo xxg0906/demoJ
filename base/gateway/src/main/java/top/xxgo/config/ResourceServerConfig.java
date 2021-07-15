@@ -90,4 +90,7 @@ public class ResourceServerConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
     }
+
+
+
 }

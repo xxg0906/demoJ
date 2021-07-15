@@ -5,7 +5,9 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.logging.log4j.util.Strings;
+import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import sun.misc.BASE64Decoder;
@@ -86,6 +88,17 @@ public class RequestUtils {
     public static List<Long> getRoleIds() {
         List<String> list = getJwtPayload().get(AuthConstant.JWT_AUTHORITIES_KEY, List.class);
         return  list.stream().map(Long::valueOf).collect(Collectors.toList());
+
+    }
+
+    public static void main(String[] args) {
+
+        try {
+            throw new MyBatisSystemException(new TooManyResultsException("sss"));
+        }catch (Exception e){
+            System.out.println("-------------------");
+            e.printStackTrace();
+        }
 
     }
 }

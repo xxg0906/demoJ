@@ -11,7 +11,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ import top.xxgo.util.WebUtils;
 @Slf4j
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
-    private final RedisTemplate<String,Object> redisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
 
     @SneakyThrows
@@ -53,7 +53,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         String payload = jwsObject.getPayload().toString();
         JSONObject jsonObject = JSONUtil.parseObj(payload);
         String jti = jsonObject.getStr(AuthConstant.JWT_JTI);
-        Boolean isBlack = redisTemplate.hasKey(AuthConstant.TOKEN_BLACKLIST_PREFIX + jti);
+        Boolean isBlack = stringRedisTemplate.hasKey(AuthConstant.TOKEN_BLACKLIST_PREFIX + jti);
         if (isBlack!=null&&isBlack) {
             return WebUtils.writeFailedToResponse(response, ResultCode.TOKEN_ACCESS_FORBIDDEN);
         }

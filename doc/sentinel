@@ -1,0 +1,3 @@
+服务端启动
+
+java -Dserver.port=9999 -Dcsp.sentinel.dashboard.server=localhost:9999 -Dproject.name=dashboard -Dsentinel.dashboard.auth.username=sentinel  -Dsentinel.dashboard.auth.password=123456 -jar -Dcsp.sentinel.log.dir=./logs/csp -Dcsp.sentinel.log.use.pid=true sentinel-dashboard-1.8.1.jar
