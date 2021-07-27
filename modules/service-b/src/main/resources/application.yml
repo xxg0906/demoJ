@@ -11,6 +11,8 @@ spring:
           data-id: dev.properties
           group: xxgo
           refresh: false
+      discovery:
+        server-addr: localhost:8848
 #            discovery:
 #                namespace: xxgo
 #                group: xxgo
