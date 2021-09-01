@@ -26,4 +26,14 @@
         <module>system</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>top.xxgo</groupId>
+                <artifactId>xxgo-common-core</artifactId>
+                <version>0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

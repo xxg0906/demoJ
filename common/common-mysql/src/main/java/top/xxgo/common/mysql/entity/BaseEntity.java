@@ -1,4 +1,4 @@
-package top.xxgo.common.core.web.domain;
+package top.xxgo.common.mysql.entity;
 
 import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -23,5 +23,6 @@ public class BaseEntity implements Serializable {
     private String remarks;
     @Version
     private Long  version;
+
     private Integer deleted;
 }

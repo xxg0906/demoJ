@@ -1,4 +1,4 @@
-package top.xxgo.common.core.web.domain;
+package top.xxgo.common.mysql.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
