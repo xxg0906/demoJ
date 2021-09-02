@@ -1,5 +1,5 @@
 server:
-  port: 8101
+  port: 8103
 spring:
   cloud:
     nacos:
@@ -7,17 +7,17 @@ spring:
       config:
         namespace: xxgo
         group: xxgo
-        shared-configs[0]:
-          data-id: dev.properties
-          group: xxgo
-          refresh: false
-      discovery:
-        server-addr: localhost:8848
+#        shared-configs[0]:
+#          data-id: dev.properties
+#          group: xxgo
+#          refresh: false
+        file-extension: yaml
+#  profiles:
+#    active: dev
+
 #            discovery:
 #                namespace: xxgo
 #                group: xxgo
-  profiles:
-    active: dev
 feign:
   hystrix:
     enabled: true

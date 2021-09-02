@@ -18,7 +18,7 @@
     </properties>
     <modules>
         <module>
-            service_a
+            service-a
         </module>
         <module>
             service-b

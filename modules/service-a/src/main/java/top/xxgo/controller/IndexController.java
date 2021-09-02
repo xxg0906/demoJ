@@ -8,24 +8,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 /**
  * @author xxg
  */
 @RestController
 @RefreshScope
 //@RequestMapping("a")
-public class IndexController   {
+public class IndexController {
 
 
+    @Value("${testKey:123}")
+    private String key;
 
-@Value("${testKey:123}")
-private String key;
-
+    @Value("${test}")
+    private String test;
 
     @GetMapping("npe")
     public String callApi() {
         throw new NullPointerException("sssss");
 //        return "hello this service a "+key;
+    }
+
+    @GetMapping("")
+    public String index() {
+        return "sssss";
+//        return "hello this service a "+key;
+    }
+
+    @GetMapping("test")
+    public String test() {
+        return test;
     }
 }
