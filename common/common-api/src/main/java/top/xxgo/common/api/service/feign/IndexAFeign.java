@@ -2,6 +2,7 @@ package top.xxgo.common.api.service.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import top.xxgo.common.api.service.feign.hystrix.IndexFeignFallbackFactory;
 //import top.xxgo.common.api.service.feign.hysrtrix.IndexFeignHysrtrix;
 
@@ -13,8 +14,18 @@ public interface IndexAFeign {
 
 
     /**
+     *
      * @return
      */
     @GetMapping("cloudApi")
-   public String callApi();
+    String callApi(@RequestParam("name") String name);
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("fallbackTest")
+
+    String fallbackTest(@RequestParam("name") String name);
+
 }

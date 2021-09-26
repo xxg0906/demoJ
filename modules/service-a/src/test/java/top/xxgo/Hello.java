@@ -1,6 +1,14 @@
 package top.xxgo;
 
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+
+import java.io.IOException;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -23,7 +31,10 @@ public class Hello {
         this.name = name;
     }
 
-     @Override
+    public Hello() {
+    }
+
+    @Override
      public String toString() {
          return "Hello{" +
                  "name='" + name + '\'' +
@@ -42,6 +53,8 @@ public class Hello {
 
 
      }
+
+
 
 
 }

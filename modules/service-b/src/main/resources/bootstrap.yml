@@ -1,6 +1,8 @@
 server:
-  port: 8103
+  port: 8101
 spring:
+  application:
+    name: service-b
   cloud:
     nacos:
       server-addr: localhost:8848
@@ -11,13 +13,13 @@ spring:
 #          data-id: dev.properties
 #          group: xxgo
 #          refresh: false
-        file-extension: yaml
-#  profiles:
-#    active: dev
-
+      discovery:
+        server-addr: localhost:8848
 #            discovery:
 #                namespace: xxgo
 #                group: xxgo
+  profiles:
+    active: dev
 feign:
   hystrix:
     enabled: true

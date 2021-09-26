@@ -1,0 +1,145 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        #       ----------- predicates demo -----------
+        - id: ignore-server-name   #自定义的路由 ID，保持唯一
+          uri: lb://service-a     # 目标地址
+          predicates:   #    路由条件
+            - Path=/cloudApi/**  # 以  满足cloudApi开头的请求 转发
+        - id: forward
+          uri: http://localhost:8104/
+          predicates:
+            - Path=/forward/** ,/forward2/**
+        - id: methond-param
+          uri: http://localhost:8104/
+          predicates:
+            - Path=/method/**
+            - Query=name
+        - id: methond-param2
+          uri: http://localhost:8101/
+          predicates:
+            - Path=/method/**
+            - Query=name2  # 参数 包含  name2
+        - id: methond-param3
+          uri: http://localhost:8104/
+          predicates:
+            - Path=/method/**
+            - Query=pre, ^186 # 参数 包含  name2,且值符合正则 ^186    parm1,parm2  参数名，参数值的正则
+        - id: mix
+          uri: http://localhost:8104/
+          predicates:
+            - Header=authToken, \d+   # 请求头包含  authToken 且 符合正则  \d+
+            - Cookie=sessionId, test  # Cookie name 值和正则表达式 匹配
+            - Host=**.baidu.com
+            - Method=GET             # get请求
+            - Path=/foo/{segment}   # /foo/test  true; /foo 、 /foo/test/d  false
+            - RemoteAddr=192.168.1.1/24   #    远程地址
+        #-------------predicates  end------------------------------
+        #----------------------Filter  start------------------------
+        - id: prefixPath
+          uri: http://localhost:8101/
+          predicates:
+            - Path=/prefixPath/**
+          filters:
+            - PrefixPath=/v1  #在请求路径前加上前缀
+        - id: rewritePath
+          uri: http://localhost:8101/
+          predicates:
+            - Path=/rewritePath/**
+          filters:
+            - RewritePath=/v1, /v2  # /v1 转 /v2
+        - id: prefixpath_route
+          uri: https://example.org
+          predicates:
+            - Path=/prefixpath_route/**
+          filters:
+            - RedirectTo=302, https://acme.org  #重定向的返回码和地址
+        - id: removerequestheader_route
+          uri: https://example.org
+          predicates:
+            - Path=/removerequestheader_route/**
+          filters:
+            - RemoveRequestHeader=X-Request-Foo   # 去掉请求头
+        - id: removerequestparameter_route
+          uri: https://example.org
+          predicates:
+            - Path=/removerequestparameter_route/**
+          filters:
+            - RemoveRequestParameter=red    # 去掉请求参数
+        - id: setpath_route
+          uri: https://example.org
+          predicates:
+            - Path=/red/{segment}
+          filters:
+            - SetPath=/{segment}   #  /red/blue的请求被转发到/blue
+        - id: setrequestheader_route
+          uri: https://example.org
+          predicates:
+            - Path=/setrequestheader_route/**
+          filters:
+            - SetRequestHeader=X-Request-Red, Blue   #设置请求头
+        - id: setstatusint_route
+          uri: https://example.org
+          predicates:
+            - Path=/setstatusint_route/**
+          filters:
+            - SetStatus=401  # 设置返回状态码
+        - id: nameRoot
+          uri: https://nameservice
+          predicates:
+            - Path=/name/**
+          filters:
+            - StripPrefix=2   # 请求/name/blue/red会转发到/red。
+        - id: request_size_route
+          uri: http://localhost:8080/upload
+          predicates:
+            - Path=/upload
+          filters:
+            - name: RequestSize
+              args:
+                maxSize: 5000000  # 超过5M的请求会返回413错误
+#      default-filters:  #  对所有请求添加过滤器。
+#        - AddResponseHeader=X-Response-Default-Red, Default-Blue
+#        #        - PrefixPath=/v1
+#        - name: Hystrix
+#          args:
+#            name: fallbackCmdA
+#            fallbackUri: forward:/fallbackA
+
+        - id: limit_route
+          uri: lb://service-b
+          predicates:
+            - Path=/v5/test
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@apiKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+  application:
+    name: gateway
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+server:
+  port: 8001
+
+
+
+
+#logging:
+#  level:
+#    org:
+#      springframework: debug
+#

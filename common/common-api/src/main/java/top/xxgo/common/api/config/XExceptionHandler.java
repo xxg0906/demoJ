@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class XExceptionHandler {
 
 
-    @ExceptionHandler(Exception.class)
-    public String hand(Exception e){
-        return  e.getMessage();
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String hand(Exception e){
+//        return  e.getMessage();
+//    }
 
 }
