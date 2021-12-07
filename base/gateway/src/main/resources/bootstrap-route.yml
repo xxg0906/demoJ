@@ -1,0 +1,60 @@
+spring:
+  cloud:
+    sentinel:
+      transport:
+        ## VM
+        ##-Djava.net.preferIPv4Stack=true -Dcsp.sentinel.dashboard.server=localhost:8080 -Dcsp.sentinel.api.port=8666 -Dproject.name=gateway -Dcsp.sentinel.app.type=1
+        dashboard: localhost:7999
+        port: 8719
+        # 服务启动直接建立心跳连接
+      eager: true
+    gateway:
+      globalcors:  #允许跨域
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            allowed-methods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTION
+      discovery:
+        locator:
+          enabled: true  #  gateway开启服务注册和发现的功能，
+          lower-case-service-id: true
+      routes:
+        - id: limit_route  # 分布式限流  令牌桶
+          uri: lb://service-b
+          predicates:
+            - Path=/v5/test
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@apiKeyResolver}'
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 5
+
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+  application:
+    name: gateway
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+server:
+  port: 8001
+
+
+
+
+#logging:
+#  level:
+#    org:
+#      springframework: debug
+#
