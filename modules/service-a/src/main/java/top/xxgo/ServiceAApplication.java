@@ -9,13 +9,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /**
  * @author xxg
  */
-@SpringBootApplication
+@SpringBootApplication(excl)
 @EnableFeignClients
 @EnableDiscoveryClient
 public class ServiceAApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceAApplication.class, args);
+         SpringApplication.run(ServiceAApplication.class, args);
     }
 
 }

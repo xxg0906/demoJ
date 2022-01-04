@@ -22,6 +22,8 @@ spring:
 #          group: xxgo
 #          refresh: false
         file-extension: yaml
+  profiles:
+    active: dev
 #  profiles:
 #    active: dev
 
